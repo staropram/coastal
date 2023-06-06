@@ -1,0 +1,25 @@
+---
+title: "Estimating minimum sample size for prevalence comparisons"
+output: html_document
+---
+
+```{r echo=F}
+library(knitr)
+```
+
+We can generate an estimate of the sample size for comparing two proporptions (or equivalently, prevalences) in R for different values of our estimated prevalences `p1` and `p2` in our two groups:
+
+```{r file="power_calc.R"}
+```
+
+This assumes that we want our study to have a power of `90%` and that our target signifiance is `5%`. The results are shown in the table below:
+
+```{r echo=F}
+kable(out, caption = "Prevalence sample size matrix. Leftmost column indicates p1 prevalence.") |> kable_styling(bootstrap_options = "striped", full_width = FALSE) 
+```
+
+So to provide an example, if our prevalence in group 1 (`p1`) is `1%` and our prevalence in group 2 (`p2`) is `2%` (`p1 + 1%` in the column names), then we would need a minimum `n=3103` in each group to observe this effect size at a significance of `5%` assuming a power of `90%`.
+
+In a monte-carlo simulation this is equivalent to saying that `90%` of some large number of simulations where `n=3103` will observe a significant difference (in this case `5%` probability that null-hypothesis is correct) in the prevalence rates between the groups assuming they are `1%` and `2%` respectively.
+
+Note that `power.prop.test` is two-tailed, so if we are fairly confident that our coastal communities indeed show a higher prevalence, we can detect a given effect size at half the sample size shown in the table above.
