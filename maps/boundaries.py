@@ -1,18 +1,17 @@
 import pandas as pd
 import geopandas as gpd
-dover = gpd.read_file("lsoa_dover.geojson")
-urban = pd.read_csv("LSOA_Rural_Urban_Classifications.csv")
+dover = gpd.read_file("lsoa_boundaries_dover_2011.geojson")
+urban = pd.read_csv("lsoa_rural_urban_classifications_2011.csv")
 # do a left join on our dover data, note ONS has not published 2021 classifications yet
 # so the urban column is "LSOA11CD"
-dover = dover.merge(urban,left_on="LSOA21CD",right_on="LSOA11CD",how="left")
+dover = dover.merge(urban,on=["LSOA11CD","LSOA11NM"],how="left")
 
-urban_mapping = {
-   'Rural village and dispersed' : 1,
-   'Rural town and fringe' : 2,
-   'Urban city and town' : 3 ,
+# map the class to a colour
+urban_color_map = {
+    'Rural village and dispersed' : '#77dd77',
+    'Rural town and fringe' : '#fdfd96',
+    'Urban city and town' : '#ffb347',
 }
 
-dover['urban_class'] = dover.RUC11.map(urban_mapping)
+dover['urban_color_map'] = dover.RUC11.map(urban_color_map)
 
-
-dover.head()
