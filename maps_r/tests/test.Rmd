@@ -1,0 +1,37 @@
+---
+title: "Test of differnt map libraries"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Leaflet
+
+```{r,echo=F}
+source('leaflet_test.R')
+leaflet_map
+```
+
+# Mapdeck
+
+```{r,echo=F}
+source('mapdeck_test.R')
+mapdeck_map
+```
+
+# Tmap
+
+```{r,echo=F}
+source('tmap_test.R')
+tmap_map
+```
+
+
+# Mapview
+
+```{r,echo=F}
+source('mapview_test.R')
+mapview_map
+```

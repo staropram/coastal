@@ -1,0 +1,27 @@
+---
+title: "Interactive Map"
+output: html_document
+---
+
+We are going to take a look at 2011 data since certain datasets are not yet available for the 2021 census. It is worth noting that the LSOAs do change between census, they may have different names or change shape or new ones ma be created owing to housing developments. The Office for National Statistics (ONS) [open geography portal](https://geoportal.statistics.gov.uk/) is very useful for searching available datasets. For example they do have data tables to map from 2011 LSOAs to 2021 LSOAs.
+
+We obtained 2011 Lower Super Output Areas (LSOA) boundaries from the ONS [here](https://geoportal.statistics.gov.uk/datasets/ons::lsoa-dec-2011-boundaries-generalised-clipped-bgc-ew-v3-2). These are clipped (don't extend into the sea etc) and generalised to 20m (slightly less detail than the actual boundaries). I downloaded these as geojson since this has a lot of tools that can be worked with, and saved them as a file called `lsoa_boundaries_2011.geojson`
+
+This is a `62MB` file and we are only really interested in the coastal towns. And we can start with Dover which we can extract and save like this:
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(leaflet)
+
+# Create a map widget by calling leaflet()
+m <- leaflet() %>%
+     # Add a tile layer (base map)
+     addTiles() %>%  
+       # Set the view to a location
+       setView(lng = -71.0589, lat = 42.3601, zoom = 12)
+
+m  # Print the map
+```
