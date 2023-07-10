@@ -4,10 +4,10 @@ import geopandas as gpd
 gdf = gpd.read_file('../data/lsoa_boundaries_2011.geojson')
 
 # get the county
-gdf['County'] = gdf['LSOA11NM'].str.split(' ', expand=True)[0]
+gdf['Region'] = gdf['LSOA11NM'].str.split(' ', expand=True)[0]
 
 # filter out dover
-dover = gdf[gdf['County']=='Dover']
+dover = gdf[gdf['Region']=='Dover']
 
 # save
 dover.to_file("../data/lsoa_boundaries_dover_2011.geojson", driver='GeoJSON')
