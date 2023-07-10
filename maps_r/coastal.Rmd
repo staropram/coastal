@@ -11,19 +11,55 @@ This is a `62MB` file and we are only really interested in the coastal towns. An
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+knitr::read_chunk("lsoa_extract_dover.R")
+knitr::read_chunk("lsoa_merge_ruc.R")
 ```
 
-```{r}
+```{r lsoa_extract_dover,eval=F}
+```
+
+This then saves the Dover boundaries in `lsoa_boundaries_dover_2011.geojson`. We can then take a look at it using the interactive mapping library `tmap`: 
+
+```{r,warn=F,message=F}
 library(tmap)
 library(sf)
 
-lsoa_dover_geojson_fn <- "../../data/lsoa_boundaries_dover_2011.geojson"
-dover_sf <- st_read(lsoa_dover_geojson_fn)
+# load in the LSOA boundaries
+lsoa_dover_geojson_fn <- "../data/lsoa_boundaries_dover_2011.geojson"
+# convert it to Simple Features object
+dover_sf <- st_read(lsoa_dover_geojson_fn,quiet=T)
 
+# increase max.categories otherwise we can only show a few different boundaries
 tmap_options(max.categories=100)
-tmap_mode("view") 
+tmap_mode("view")
 
+# create the map
 tmap_map <- tm_basemap("OpenStreetMap") +
        tm_shape(dover_sf) + 
        tm_polygons("LSOA11CD",alpha=0.5,legend.show=F)
+tmap_map
+```
+
+That's more interesting, we could now take the [2011 rural-urban classification data for LSOAs](https://geoportal.statistics.gov.uk/datasets/ons::rural-urban-classification-2011-of-lower-layer-super-output-areas-in-england-and-wales-1/explore) and overlay that. For more information about this classification see [this document](https://www.ons.gov.uk/file?uri=/methodology/geography/geographicalproducts/ruralurbanclassifications/2011ruralurbanclassification/rucoaleafletmay2015tcm77406351.pdf). Assume we have downloaded the data, we can then merge the RUC information with the LSOA boundaries:
+
+```{r lsoa_merge_ruc,eval=F}
+```
+
+We can then plot this, note the call to `tmap` is very similar as before, we just use the `RUC11` field to get the correct colour.
+
+```{r,message=F}
+# load in the LSOA boundaries with the RUC labels
+dover_plus_ruc <- "../data/lsoa_boundaries_dover_2011_plus_ruc.geojson"
+# convert it to Simple Features object
+dover_sf <- st_read(dover_plus_ruc,quiet=T)
+
+# increase max.categories otherwise we can only show a few different boundaries
+tmap_options(max.categories=100)
+tmap_mode("view")
+
+# create the map
+tmap_map <- tm_basemap("OpenStreetMap") +
+       tm_shape(dover_sf) + 
+       tm_polygons("RUC11",alpha=0.5,legend.show=T)
+tmap_map
 ```
