@@ -4,7 +4,7 @@ library(stringr)
 ## ---- lsoa_extract_dover ----
 
 # load the boundary data
-lsoa_boundaries <- data.table(st_read('../data/lsoa_boundaries_2011.geojson'))
+lsoa_boundaries <- data.table(st_read('../data/lsoa_boundaries_2011.geojson',quiet=T))
 
 # extract the region from the data
 lsoa_boundaries$region <- str_split(lsoa_boundaries_2011$LSOA11NM, ' ', simplify = TRUE)[,1]

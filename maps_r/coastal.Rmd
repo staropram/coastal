@@ -1,7 +1,15 @@
 ---
-title: "Interactive Map"
-output: html_document
+title: "Exploration of Coastal data"
+output:
+   bookdown::html_document2:
+      toc: true
+      toc_float:
+         collapsed: false
+      toc_depth: 3
+      number_sections: true
 ---
+
+# 2011 LSOA data
 
 We are going to take a look at 2011 data since certain datasets are not yet available for the 2021 census. It is worth noting that the LSOAs do change between census, they may have different names or change shape or new ones ma be created owing to housing developments. The Office for National Statistics (ONS) [open geography portal](https://geoportal.statistics.gov.uk/) is very useful for searching available datasets. For example they do have data tables to map from 2011 LSOAs to 2021 LSOAs.
 
@@ -10,9 +18,14 @@ We obtained 2011 Lower Super Output Areas (LSOA) boundaries from the ONS [here](
 This is a `62MB` file and we are only really interested in the coastal towns. And we can start with Dover which we can extract and save like this:
 
 ```{r setup, include=FALSE}
+# read all of the chunks in here
 knitr::opts_chunk$set(echo = TRUE)
 knitr::read_chunk("lsoa_extract_dover.R")
 knitr::read_chunk("lsoa_merge_ruc.R")
+knitr::read_chunk("plot_dover_lsoa.R")
+knitr::read_chunk("plot_dover_lsoa_plus_ruc.R")
+knitr::read_chunk("bua_extract_dover.R")
+knitr::read_chunk("plot_dover_bua.R")
 ```
 
 ```{r lsoa_extract_dover,eval=F}
@@ -20,25 +33,10 @@ knitr::read_chunk("lsoa_merge_ruc.R")
 
 This then saves the Dover boundaries in `lsoa_boundaries_dover_2011.geojson`. We can then take a look at it using the interactive mapping library `tmap`: 
 
-```{r,warn=F,message=F}
-library(tmap)
-library(sf)
-
-# load in the LSOA boundaries
-lsoa_dover_geojson_fn <- "../data/lsoa_boundaries_dover_2011.geojson"
-# convert it to Simple Features object
-dover_sf <- st_read(lsoa_dover_geojson_fn,quiet=T)
-
-# increase max.categories otherwise we can only show a few different boundaries
-tmap_options(max.categories=100)
-tmap_mode("view")
-
-# create the map
-tmap_map <- tm_basemap("OpenStreetMap") +
-       tm_shape(dover_sf) + 
-       tm_polygons("LSOA11CD",alpha=0.5,legend.show=F)
-tmap_map
+```{r plot_dover_lsoa,warn=F,message=F}
 ```
+
+# Rural urban classification
 
 That's more interesting, we could now take the [2011 rural-urban classification data for LSOAs](https://geoportal.statistics.gov.uk/datasets/ons::rural-urban-classification-2011-of-lower-layer-super-output-areas-in-england-and-wales-1/explore) and overlay that. For more information about this classification see [this document](https://www.ons.gov.uk/file?uri=/methodology/geography/geographicalproducts/ruralurbanclassifications/2011ruralurbanclassification/rucoaleafletmay2015tcm77406351.pdf). Assume we have downloaded the data, we can then merge the RUC information with the LSOA boundaries:
 
@@ -47,19 +45,18 @@ That's more interesting, we could now take the [2011 rural-urban classification 
 
 We can then plot this, note the call to `tmap` is very similar as before, we just use the `RUC11` field to get the correct colour.
 
-```{r,message=F}
-# load in the LSOA boundaries with the RUC labels
-dover_plus_ruc <- "../data/lsoa_boundaries_dover_2011_plus_ruc.geojson"
-# convert it to Simple Features object
-dover_sf <- st_read(dover_plus_ruc,quiet=T)
+```{r plot_dover_lsoa_plus_ruc,warn=F,message=F}
+```
 
-# increase max.categories otherwise we can only show a few different boundaries
-tmap_options(max.categories=100)
-tmap_mode("view")
+# Built up areas
 
-# create the map
-tmap_map <- tm_basemap("OpenStreetMap") +
-       tm_shape(dover_sf) + 
-       tm_polygons("RUC11",alpha=0.5,legend.show=T)
-tmap_map
+The next thing to look at is the [2011 Built up Areas data](https://geoportal.statistics.gov.uk/datasets/0249dcf56c7d41e5a82bcd89cc37668f/explore).  Built-up Areas (BUAs) and Built-up Area Sub-divisions (BUASDs) are defined as land that is "irreversibly urban in character", including continuous urban development and any areas of intervening open space.
+
+
+```{r bua_extract_dover,eval=F}
+```
+
+And we can then plot this:
+
+```{r plot_dover_bua,warn=F,message=F}
 ```
