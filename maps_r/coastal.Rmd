@@ -26,6 +26,7 @@ knitr::read_chunk("plot_dover_lsoa.R")
 knitr::read_chunk("plot_dover_lsoa_plus_ruc.R")
 knitr::read_chunk("bua_extract_dover.R")
 knitr::read_chunk("plot_dover_bua.R")
+knitr::read_chunk("plot_se_boundary.R")
 ```
 
 ```{r lsoa_extract_dover,eval=F}
@@ -59,4 +60,9 @@ The next thing to look at is the [2011 Built up Areas data](https://geoportal.st
 And we can then plot this:
 
 ```{r plot_dover_bua,warn=F,message=F}
+```
+
+# Coastal bounds
+
+```{r plot_se_bounds,warn=F,message=F}
 ```
