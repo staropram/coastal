@@ -1,5 +1,6 @@
 library(sf)
 library(stringr)
+library(data.table)
 
 ## ---- lsoa_extract_dover ----
 
