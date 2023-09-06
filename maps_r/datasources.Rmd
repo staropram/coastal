@@ -1,0 +1,10 @@
+
+# OS Open Names
+
+https://www.data.gov.uk/dataset/4949c88e-89b7-49b5-a0cf-8a3a2a4dac9d/os-open-names
+
+# Admin boundaries
+
+http://www.diva-gis.org/gdata
+
+Admin areas

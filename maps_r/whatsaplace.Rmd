@@ -1,0 +1,21 @@
+---
+title: "What is a coastal town?"
+output:
+   bookdown::html_document2:
+      toc: true
+      toc_float:
+         collapsed: false
+      toc_depth: 3
+      number_sections: true
+bibliography: coastal.bib
+csl: ieee-with-url.csl
+link-citations: true
+---
+
+What is a coastal town? It sounds like a simple question to answer and probably one which conjours up specific place names in the mind of the reader: St Ives, Scarborough, Witby, Portree, Herne Bay, etc. But what can a place name tell us about a town? Let us consider Herne Bay in Kent as an example as it serves to illustrate the hidden complexity underlying this seemingly simple question.
+
+Ordnance Survey maintains a list of place names in a product called "OS Open Names" [@OrdnanceSurvey2023] which is free to use.
+
+But what can we really learn about a place solely from its name? Whatever is recorded in association with that name.
+
+# References

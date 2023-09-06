@@ -1,8 +1,8 @@
 # https://osdatahub.os.uk/downloads/open/OpenNames
 library(sf)
 library(data.table)
-#places <- st_read("../data/opname_gb.gpkg")
-#places <- data.table(places)
+places <- st_read("../data/opname_gb.gpkg")
+places <- data.table(places)
 
 places_se <- places[region=="South East"]
 places_cities_southeast <- places_se[local_type=="City",]
