@@ -62,4 +62,31 @@ Figure \@ref(fig:hbClose) zooms in on Herne Bay.
 ```{r hbClose,echo=F,fig.cap="Herne Bay, a coastal town in the southeast of England",out.width='80%',fig.align="center",fig.pos='H'}
 knitr::include_graphics("figures/hb_close.png")
 ```
+
 From the figure are we to assume that "Herne Bay" is the small area between Oxenden and Mickleburgh Hill? We know from the OS Open Places definition that the area of a town must be at least 2.5 square kilometers, but the area between Oxenden and Mickleburgh Hill is approximately 0.75 square kilometers so this cannot be correct. We can see that Herne Bay constitutes a continous built-up area extending from Studd Hill to Bishopstone along the coast. We know that it is at-least 2.5 square kilometers, but we do not know the shape or total extent of the town as this information has not been provided.
+
+## Administrative boundaries
+
+How might this extent be determined? One proposal is to use existing administrative boundaries. Ordnance Survey provide a dataset containing all the administrative boundaries in the UK under the name Boundary-Line [@OrdnanceSurveyGB2023b].
+
+Figure \@ref(fig:hbWards) shows the map zoomed onto Herne Bay with the election wards in that area labelled.
+
+```{r hbWards,echo=F,fig.cap="The election wards surrounding Herne Bay",out.width='80%',fig.align="center",fig.pos='H'}
+knitr::include_graphics("figures/hb_wards.png")
+```
+
+Election ward boundaries for local authorities in the UK are set so that the number of people per representative is roughly equal as well as taking into consideration community identity and geographic features that might signify natural boundaries. Looking at the figure, one could argue that Heron and Beltinge represent Herne Bay but there are no official associative lists or 1-to-1 mapping between towns and wards and wards can span town boundaries.
+
+The smallest unit of governence is the civil parish and in many cases the civil parish would be a good approximation for the extent of a town or village, however this is not always the case and a town can be comprised of multiple civil parishes. 
+
+In some cases there is no civil parish because governence of the area has been subsumed to a regional authority. This is the case for Herne bay which is governed by Canterbury City Council and falls within an unparished area that also encompasses Whitstable.
+
+Figure \@ref(fig:unParished) shows the unparished area that encompasses Herne Bay and Whitstable with surrounding parished areas shown for context.
+
+```{r unParished,echo=F,fig.cap="The unparished area containing Herne Bay",out.width='80%',fig.align="center",fig.pos='H'}
+knitr::include_graphics("figures/hb_unparished")
+```
+
+## Address based convex hull
+
+Ordnance Survey offer another product called Addressbase Core which provides the centroid for every address in Great Britain. What would the convex hull of all addresses containing the line "Herne Bay" look like?
