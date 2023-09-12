@@ -42,7 +42,7 @@ Ordnance Survey maintains a list of place names in a product called "OS Open Nam
 This raises the question, how is the area determined? The technical specification does not provide a direct answer but page 4 of [@OrdnanceSurveyGB2023a] states:
 
 > Settlements are sourced from an internal OS data store. For LocalType City and Town, the geometry supplied is the notional centre of the settlement (the position that the majority of informed people would accept as being the 'centre' of the settlement) and the position has been manually captured. 
->
+> 
 > For all other settlement types, the position has been generated from the major road junction within the settlement, using OS MasterMap Highways Network.
 
 It would appear that town's centre is something manually determined by humans at Ordnance Survey, but how the area is ascertained is not clear.
@@ -69,6 +69,8 @@ From the figure are we to assume that "Herne Bay" is the small area between Oxen
 
 How might this extent be determined? One proposal is to use existing administrative boundaries. Ordnance Survey provide a dataset containing all the administrative boundaries in the UK under the name Boundary-Line [@OrdnanceSurveyGB2023b].
 
+### Election Wards
+
 Figure \@ref(fig:hbWards) shows the map zoomed onto Herne Bay with the election wards in that area labelled.
 
 ```{r hbWards,echo=F,fig.cap="The election wards surrounding Herne Bay",out.width='80%',fig.align="center",fig.pos='H'}
@@ -77,6 +79,8 @@ knitr::include_graphics("figures/hb_wards.png")
 
 Election ward boundaries for local authorities in the UK are set so that the number of people per representative is roughly equal as well as taking into consideration community identity and geographic features that might signify natural boundaries. Looking at the figure, one could argue that Heron and Beltinge represent Herne Bay but there are no official associative lists or 1-to-1 mapping between towns and wards and wards can span town boundaries.
 
+### Civil Parishes
+
 The smallest unit of governence is the civil parish and in many cases the civil parish would be a good approximation for the extent of a town or village, however this is not always the case and a town can be comprised of multiple civil parishes. 
 
 In some cases there is no civil parish because governence of the area has been subsumed to a regional authority. This is the case for Herne bay which is governed by Canterbury City Council and falls within an unparished area that also encompasses Whitstable.
@@ -84,8 +88,10 @@ In some cases there is no civil parish because governence of the area has been s
 Figure \@ref(fig:unParished) shows the unparished area that encompasses Herne Bay and Whitstable with surrounding parished areas shown for context.
 
 ```{r unParished,echo=F,fig.cap="The unparished area containing Herne Bay",out.width='80%',fig.align="center",fig.pos='H'}
-knitr::include_graphics("figures/hb_unparished")
+knitr::include_graphics("figures/hb_unparished.png")
 ```
+
+So we are still no closer to determining the physical extent of Herne Bay.
 
 ## Address based convex hull
 
