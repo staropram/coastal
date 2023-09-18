@@ -5,7 +5,6 @@ library(sf)
 library(dplyr)
 source("helper_functions.R")
 
-
 if(!exists("ads")) {
    ads <- fread("../../data/addressbasecore/AddressBaseCore_FULL_2021-09-09_001.csv")
 }

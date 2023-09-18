@@ -50,7 +50,7 @@ It would appear that town's centre is something manually determined by humans at
 Figure \@ref(fig:seTowns) shows the settlements defined as towns located in the southeast of England. Herne Bay is shown in the top middle of the figure.
 
 ```{r seTowns,echo=F,fig.cap="Towns in the southeast of England as defined by Ordnance Survey",out.width='80%',fig.align="center",fig.pos='H'}
-knitr::include_graphics("figures/se_towns.png")
+knitr::include_graphics("figures/se_towns.jpg")
 ```
 
 # Extent of Herne Bay
@@ -60,7 +60,7 @@ We have a definition of a town but the only information we have associated to it
 Figure \@ref(fig:hbClose) zooms in on Herne Bay.
 
 ```{r hbClose,echo=F,fig.cap="Herne Bay, a coastal town in the southeast of England",out.width='80%',fig.align="center",fig.pos='H'}
-knitr::include_graphics("figures/hb_close.png")
+knitr::include_graphics("figures/hb_close.jpg")
 ```
 
 From the figure are we to assume that "Herne Bay" is the small area between Oxenden and Mickleburgh Hill? We know from the OS Open Places definition that the area of a town must be at least 2.5 square kilometers, but the area between Oxenden and Mickleburgh Hill is approximately 0.75 square kilometers so this cannot be correct. We can see that Herne Bay constitutes a continous built-up area extending from Studd Hill to Bishopstone along the coast. We know that it is at-least 2.5 square kilometers, but we do not know the shape or total extent of the town as this information has not been provided.
@@ -74,39 +74,39 @@ How might this extent be determined? One proposal is to use existing administrat
 Figure \@ref(fig:hbWards) shows the map zoomed onto Herne Bay with the election wards in that area labelled.
 
 ```{r hbWards,echo=F,fig.cap="The election wards surrounding Herne Bay",out.width='80%',fig.align="center",fig.pos='H'}
-knitr::include_graphics("figures/hb_wards.png")
+knitr::include_graphics("figures/hb_wards.jpg")
 ```
 
 Election ward boundaries for local authorities in the UK are set so that the number of people per representative is roughly equal as well as taking into consideration community identity and geographic features that might signify natural boundaries. Looking at the figure, one could argue that Heron and Beltinge represent Herne Bay but there are no official associative lists or 1-to-1 mapping between towns and wards and wards can span town boundaries.
 
 ### Civil Parishes
 
-The smallest unit of governence is the civil parish and in many cases the civil parish would be a good approximation for the extent of a town or village, however this is not always the case and a town can be comprised of multiple civil parishes. 
+The smallest unit of governence in the UK is the civil parish and in many cases the civil parish would be a good approximation for the extent of a town or village, however this is not always the case and a town can be comprised of multiple civil parishes. 
 
-In some cases there is no civil parish because governence of the area has been subsumed to a regional authority. This is the case for Herne bay which is governed by Canterbury City Council and falls within an unparished area that also encompasses Whitstable.
+In some cases there is no civil parish because governence of the area has been subsumed to a regional authority. This is the case for Herne Bay which is governed by Canterbury City Council and falls within an unparished area that also encompasses Whitstable.
 
 Figure \@ref(fig:unParished) shows the unparished area that encompasses Herne Bay and Whitstable with surrounding parished areas shown for context.
 
 ```{r unParished,echo=F,fig.cap="The unparished area containing Herne Bay",out.width='80%',fig.align="center",fig.pos='H'}
-knitr::include_graphics("figures/hb_unparished.png")
+knitr::include_graphics("figures/hb_unparished.jpg")
 ```
 
 So we are still no closer to determining the physical extent of Herne Bay.
 
 ## Address based convex hull
 
-Ordnance Survey offer another product called Addressbase Core [@OrdnanceSurveyGB2023c]which provides the centroid for every address in Great Britain. What would the convex hull of all addresses look like whose "Town Name" field matches "Herne Bay"?  The resulting convex hull is shown in Figure \@ref(fig:addressConvex).
+Ordnance Survey offer another product called AddressBase Core [@OrdnanceSurveyGB2023c] which provides the centroid for every address in Great Britain. What would the convex hull of all addresses look like whose "Town Name" field matches "Herne Bay"?  The resulting convex hull is shown in Figure \@ref(fig:addressConvex).
 
 ```{r addressConvex,echo=F,fig.cap="Convex hull of all addresses whose \"Town Name\" matches \"Herne Bay\". Local parish boundaries are shown as dotted lines and parishes are labelled.",out.width='80%',fig.align="center",fig.pos='H'}
-knitr::include_graphics("figures/hb_convex.png")
+knitr::include_graphics("figures/hb_convex.jpg")
 ```
 
-Comparing with other figures, the convex hull of addresses does appear to capture the urban area of Herne Bay but also extends outwards beyyond it by a considerable extent into the parish of Herne and Broomfield.
+Comparing with other figures, the convex hull of addresses does appear to capture the urban area of Herne Bay but also extends outwards beyond it by a considerable extent into the parish of Herne and Broomfield.
 
 How useful might this convex hull method be in general? We can carry it out for the adjacent town Whitstable, as well as the area known as Birchington which is not a town. The result of this is shown in Figure \@ref(fig:addressConvexPlus)
 
 ```{r addressConvexPlus,echo=F,fig.cap="Convex hulls of all addresses whose \"Town Name\" matches \"Whitstable\" and \"Herne Bay\", and whose address contains \"Birchington\".",out.width='100%',fig.align="center",fig.pos='H'}
-knitr::include_graphics("figures/hb_and_others-convex.png")
+knitr::include_graphics("figures/hb_and_others-convex.jpg")
 ```
 
 The convex hull for Whitstable is reasonable in the sense it appears to capture the urban area of Whitstable near to the coast but extends far beyond the urban area into rural areas.
@@ -120,13 +120,13 @@ In summary, the address based convex hull is potentially a useful method in esta
 Each national census in the UK defines certain geographies for which data can be extracted. The 2011 census  [@OfficeforNationalStatistics2021] defines various output areas including one called "Built up Areas" or BUAs. Figure \@ref(fig:hbBUA) plots the BUA that corresponds to the area "Herne Bay / Whitstable".
 
 ```{r hbBUA,echo=F,fig.cap="Built Up Area of for \"Herne Bay / Whitstable\" focused on Herne Bay ",out.width='100%',fig.align="center",fig.pos='H'}
-knitr::include_graphics("figures/hb_bua.png")
+knitr::include_graphics("figures/hb_bua.jpg")
 ```
 
-Whilst the BUA appears to do an excellent job of covering the urban area of Herne Bay, it also covers whitstable as can be seen from Figure \@ref(fig:hbAndWhitsBUA).
+Whilst the BUA appears to do an excellent job of covering the urban area of Herne Bay, it also covers Whitstable as can be seen from Figure \@ref(fig:hbAndWhitsBUA).
 
 ```{r hbAndWhitsBUA,echo=F,fig.cap="Built Up Area of for \"Herne Bay / Whitstable\" showing both Herne Bay and Whitstable",out.width='100%',fig.align="center",fig.pos='H'}
-knitr::include_graphics("figures/hb_and_whits_bua.png")
+knitr::include_graphics("figures/hb_and_whits_bua.jpg")
 ```
 
 If the goal is to determine a rigorous definition of "Coastal Town", this sort of data mangling is not helpful as it implies the use of manual separation of aggregate BUAs to specific regions.
@@ -136,10 +136,27 @@ Fortunately in the case of Herne Bay and Whitstable these are already separated 
 Another example is Dover which has a BUA but no BUASDs. Dover's BUA is shown in Figure \@ref(fig:doverBUAPrecise).
 
 ```{r doverBUAPrecise,echo=F,fig.cap="Built Up Area of for \"Dover\"",out.width='100%',fig.align="center",fig.pos='H'}
-knitr::include_graphics("figures/dover_precise_bua.png")
+knitr::include_graphics("figures/dover_precise_bua.jpg")
 ```
+
+Is it reasonable to suggest that Whitfield is part of Dover as a Coastal Town?
 
 # Summarising census data for a place
 
+We have examined several methods for defining a town boundary with the most promising being the convex hull of addresses within that town or the built up area (or subdivision) corresponding to the town if this data exists.
+
 Once we manage to define a boundary for a place it becomes much easier to find additional information about that place. We can lookup relevant census geographies, for example for 2011 [@OfficeforNationalStatistics2011a] or 2021 [@OfficeforNationalStatistics2021] and aggregate data that intersects with our boundary.
 
+## LSOA data
+
+The lowest level of resolution to which census data is collected is called the Lower layer Super Output Area (LSOA), LSOAs with the aim to keep household counts between 400 and 1200. With LSOA boundaries we can aggregate census data to any encompassing boundary by summing statistics (with weights from [0-1] for partially intersecting LSOAs).
+
+Figure \@ref(fig:hbBUALSOAs) shows the BUASD outline for Herne Bay with the LSOA areas contained within it.
+
+```{r hbBUALSOAs,echo=F,fig.cap="Built Up Area Sub Division of for \"Herne Bay\" with LSOA areas shown within it.",out.width='100%',fig.align="center",fig.pos='H'}
+knitr::include_graphics("figures/hb_bua_lsoas.jpg")
+```
+
+The BUASD boundary and the LSOA boundaries do not perfectly coincide so any aggregate statistic based on the LSOA take into account the actual intersection with the BUASD boundary or whatever boundary is being used to define the town.
+
+# References
