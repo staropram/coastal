@@ -95,4 +95,47 @@ So we are still no closer to determining the physical extent of Herne Bay.
 
 ## Address based convex hull
 
-Ordnance Survey offer another product called Addressbase Core which provides the centroid for every address in Great Britain. What would the convex hull of all addresses containing the line "Herne Bay" look like?
+Ordnance Survey offer another product called Addressbase Core [@OrdnanceSurveyGB2023c]which provides the centroid for every address in Great Britain. What would the convex hull of all addresses look like whose "Town Name" field matches "Herne Bay"?  The resulting convex hull is shown in Figure \@ref(fig:addressConvex).
+
+```{r addressConvex,echo=F,fig.cap="Convex hull of all addresses whose \"Town Name\" matches \"Herne Bay\". Local parish boundaries are shown as dotted lines and parishes are labelled.",out.width='80%',fig.align="center",fig.pos='H'}
+knitr::include_graphics("figures/hb_convex.png")
+```
+
+Comparing with other figures, the convex hull of addresses does appear to capture the urban area of Herne Bay but also extends outwards beyyond it by a considerable extent into the parish of Herne and Broomfield.
+
+How useful might this convex hull method be in general? We can carry it out for the adjacent town Whitstable, as well as the area known as Birchington which is not a town. The result of this is shown in Figure \@ref(fig:addressConvexPlus)
+
+```{r addressConvexPlus,echo=F,fig.cap="Convex hulls of all addresses whose \"Town Name\" matches \"Whitstable\" and \"Herne Bay\", and whose address contains \"Birchington\".",out.width='100%',fig.align="center",fig.pos='H'}
+knitr::include_graphics("figures/hb_and_others-convex.png")
+```
+
+The convex hull for Whitstable is reasonable in the sense it appears to capture the urban area of Whitstable near to the coast but extends far beyond the urban area into rural areas.
+
+The convex hull for Birchington is not a good representation of the urban area near to the coast as it extends far beyond this into rural areas.
+
+In summary, the address based convex hull is potentially a useful method in establishing town boundaries perhaps in combination with other data.
+
+## Built up Area data
+
+Each national census in the UK defines certain geographies for which data can be extracted. The 2011 census  [@OfficeforNationalStatistics2021] defines various output areas including one called "Built up Areas" or BUAs. Figure \@ref(fig:hbBUA) plots the BUA that corresponds to the area "Herne Bay / Whitstable".
+
+```{r hbBUA,echo=F,fig.cap="Built Up Area of for \"Herne Bay / Whitstable\" focused on Herne Bay ",out.width='100%',fig.align="center",fig.pos='H'}
+knitr::include_graphics("figures/hb_bua.png")
+```
+
+Whilst the BUA appears to do an excellent job of covering the urban area of Herne Bay, it also covers whitstable as can be seen from Figure \@ref(fig:hbAndWhitsBUA).
+
+```{r hbAndWhitsBUA,echo=F,fig.cap="Built Up Area of for \"Herne Bay / Whitstable\" showing both Herne Bay and Whitstable",out.width='100%',fig.align="center",fig.pos='H'}
+knitr::include_graphics("figures/hb_and_whits_bua.png")
+```
+
+If the goal is to determine a rigorous definition of "Coastal Town", this sort of data mangling is not helpful as it implies the use of manual separation of aggregate BUAs to specific regions.
+
+Fortunately in the case of Herne Bay and Whitstable these are already separated in a dataset called Built Up Areas Subdivisions (BUASD) [@OfficeforNationalStatistics2011a] but this is not always the case, as the BUASD containing the built up area of Birchington also includes Margate and Westgate.
+
+Despite these shortcomings, using BUA as a proxy for Coastal Town may be useful.
+
+# Summarising census data for a place
+
+Once we manage to define a boundary for a place it becomes much easier to find additional information about that place. We can lookup relevant census geographies, for example for 2011 [@OfficeforNationalStatistics2011a] or 2021 [@OfficeforNationalStatistics2021] and aggregate data that intersects with our boundary.
+
