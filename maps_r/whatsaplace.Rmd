@@ -133,7 +133,11 @@ If the goal is to determine a rigorous definition of "Coastal Town", this sort o
 
 Fortunately in the case of Herne Bay and Whitstable these are already separated in a dataset called Built Up Areas Subdivisions (BUASD) [@OfficeforNationalStatistics2011a] but this is not always the case, as the BUASD containing the built up area of Birchington also includes Margate and Westgate.
 
-Despite these shortcomings, using BUA as a proxy for Coastal Town may be useful.
+Another example is Dover which has a BUA but no BUASDs. Dover's BUA is shown in Figure \@ref(fig:doverBUAPrecise).
+
+```{r doverBUAPrecise,echo=F,fig.cap="Built Up Area of for \"Dover\"",out.width='100%',fig.align="center",fig.pos='H'}
+knitr::include_graphics("figures/dover_precise_bua.png")
+```
 
 # Summarising census data for a place
 

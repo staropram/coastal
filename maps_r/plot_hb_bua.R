@@ -7,6 +7,7 @@ source("helper_functions.R")
 
 # load in HB built up areas
 hb_bua <- st_read("../data/hb_bua.geojson")
+dover_precise_bua <- st_read("../data/dover_bua_precise.geojson")
 
 tmap_mode("plot")
 graphics.off()
@@ -44,5 +45,18 @@ plot_hb_and_whits_bua <- function() {
    print(tmap_map)
    tmap_save(tmap_map,"figures/hb_and_whits_bua.png")
 }
+
+osm_dover_precise <- read_osm(st_bbox(dover_precise_bua), zoom=13, ext=1.1)
+plot_dover_precise_bua <- function() {
+   tmap_map <- 
+         tm_shape(osm_dover_precise) + 
+         tm_rgb() + 
+         tm_shape(dover_precise_bua) +
+         tm_polygons(labels=c("pop"),fill=NA,alpha=0,legend.show=F,lwd=3,border.col="darkred")
+   print(tmap_map)
+   tmap_save(tmap_map,"figures/dover_precise_bua.png")
+}
+
 #plot_hb_bua()
-plot_hb_and_whits_bua()
+#plot_hb_and_whits_bua()
+plot_dover_precise_bua()
