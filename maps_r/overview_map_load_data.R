@@ -1,0 +1,12 @@
+load_gpkg <- function(name) {
+   if(!exists(name)) {
+      d <- st_read(paste0("../data/",name,".gpkg"))
+      assign(name, d, envir = .GlobalEnv)
+   }
+}
+
+lapply(c(
+   "kent_boundary",
+   "places_towns_kent",
+   "bua_2011_kent"
+),load_gpkg)
