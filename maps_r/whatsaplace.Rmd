@@ -23,6 +23,7 @@ header-includes:
    - \usepackage{hyperref}
    - \hypersetup{breaklinks=true}
    - \usepackage{caption}
+   - \usepackage{pdfpages}
 ---
 
 # What is a coastal town?
