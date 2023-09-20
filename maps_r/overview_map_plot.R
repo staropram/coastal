@@ -11,9 +11,14 @@ tmap_mode("view")
 
 tmap_map <- tm_basemap("OpenStreetMap") + 
    tm_view(bbox=st_bbox(kent_boundary)) + # bound to kent
-   tm_shape(kent_boundary,name="Kent Boundary") + tm_borders(lwd=3) + # kent boundary
-   tm_shape(places_towns_kent,name="Town centroids") + tm_dots() + #+ tm_text(text="name1",bg.color="white",bg.alpha=0,size=1.1,ymod=1.2) # towns
-   tm_shape(bua_2011_kent,name="BUA 2011") + tm_polygons()
+   tm_shape(kent_boundary,name="Kent Boundary") + tm_borders(lwd=3,col="darkblue") + # Kent boundary
+   tm_shape(medway_boundary,name="Medway Boundary") + tm_borders(lwd=3,col="darkred") + # Medway boundary
+   tm_shape(lsoa_2011_kent,name="LSOA 2011") + tm_polygons(alpha=0.6,col="LSOA11NMW",legend.show=F) + # LSOA
+   tm_shape(bua_2011_kent,name="BUA 2011") + tm_polygons(alpha=0.3,col="BUA11NM",legend.show=F,border.col="black",border.alpha=1) +# BUA
+   tm_shape(buasd_2011_kent,name="BUASD 2011") + tm_polygons(alpha=0.3,col="BUASD11NM",legend.show=F,border.col="black",border.alpha=1) +# BUASD
+   tm_shape(places_towns_kent,name="Town centroids") + tm_dots(size=0.1) +  # Towns
+   tm_text(text="name1",bg.color="white",bg.alpha=0,size=1.1,ymod=1) # towns
 
 
 print(tmap_map)
+tmap_save(tmap_map,"outputs/overview_map.html")

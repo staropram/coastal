@@ -7,6 +7,8 @@ load_gpkg <- function(name) {
 
 lapply(c(
    "kent_boundary",
+   "medway_boundary",
    "places_towns_kent",
-   "bua_2011_kent"
+   "bua_2011_kent",
+   "buasd_2011_kent"
 ),load_gpkg)
