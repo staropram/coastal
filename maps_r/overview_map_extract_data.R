@@ -56,5 +56,9 @@ if(!exists("places")) {
 places_towns_kent <- places_towns[places_towns$county_unitary=="Kent",]
 st_write(places_towns_kent,"../data/places_towns_kent.gpkg",append=F)
 
+# extract towns in medway
+places_towns_medway <- places_towns[places_towns$county_unitary=="Medway",]
+st_write(places_towns_medway,"../data/places_towns_medway.gpkg",append=F)
+
 
 #crop_data_to_bbox
