@@ -10,5 +10,6 @@ lapply(c(
    "medway_boundary",
    "places_towns_kent",
    "bua_2011_kent",
+   "lsoa_2011_kent",
    "buasd_2011_kent"
 ),load_gpkg)
