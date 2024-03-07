@@ -12,6 +12,6 @@ lapply(c(
    "places_towns_kent",
    "places_towns_medway",
    "bua_2011_kent",
-   "buasd_2011_kent",
-   "lsoa_2011_kent"
+   "lsoa_2011_kent",
+   "buasd_2011_kent"
 ),load_gpkg)

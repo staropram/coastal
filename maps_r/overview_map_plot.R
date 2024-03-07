@@ -11,7 +11,7 @@ tmap_mode("view")
 #osm_layer <- read_osm(town_bbox, ext=1.2,zoom=13,type="osm")
 
 tmap_map <- tm_basemap("OpenStreetMap") + 
-   tm_view(bbox=st_bbox(kent_boundary)) + # bound to kent
+   #tm_view(bbox=st_bbox(kent_boundary)) + # bound to kent
    tm_shape(kent_boundary,name="Kent Boundary") + tm_borders(lwd=3,col="darkblue") + # Kent boundary
    tm_shape(medway_boundary,name="Medway Boundary") + tm_borders(lwd=3,col="darkred") + # Medway boundary
    tm_shape(lsoa_2011_kent,name="LSOA 2011") + tm_polygons(alpha=0.6,col="LSOA11NMW",legend.show=F) + # LSOA
